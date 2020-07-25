@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-	'rex87.pythonanywhere.com/'
+	'rex87.pythonanywhere.com',
 ]
 
 # Application definition
