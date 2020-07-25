@@ -1,0 +1,1 @@
+pip 20.1.1 from C:\Users\rex87\miniconda3_64\envs\python38_env\lib\site-packages\pip (python 3.8)
