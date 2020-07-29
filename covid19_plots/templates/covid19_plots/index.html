@@ -1,0 +1,9 @@
+{% extends 'covid19_plots/base.html' %}
+
+{% block content %}
+
+    {% autoescape off %}
+    {{fig_html}}
+    {% endautoescape %}
+
+{% endblock %}

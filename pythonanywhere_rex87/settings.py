@@ -26,11 +26,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
 	'rex87.pythonanywhere.com',
+	'127.0.0.1',
 ]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'covid19_plots.apps.Covid19PlotsConfig',
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -103,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/London'
 
 USE_I18N = True
 

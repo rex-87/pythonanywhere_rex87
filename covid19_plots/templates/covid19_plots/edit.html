@@ -1,0 +1,30 @@
+{% extends 'covid19_plots/base.html' %}
+
+{% block content %}
+
+<form action="/covid19_plots/" method="POST">
+
+	{% csrf_token %}
+
+	<br>
+	<div class="container-fluid">
+		
+		<div class="row">
+			<div class="col-9">
+				<select class="selectpicker" data-actions-box="true" data-width='100%' name="selected_country_l" id="country_select" data-live-search="true" show-tick multiple>
+					{% for country in country_l %}
+				  		<option value="{{country}}" {% if country in selected_country_l %}selected{% endif %}>{{country}}</option>
+					{% endfor %}
+				</select>
+			</div>			
+			<div class="col">
+				<input type="submit" value="Submit">
+			</div>			
+		</div>
+
+
+	</div>
+
+</form>
+
+{% endblock %}
