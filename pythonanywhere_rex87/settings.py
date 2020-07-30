@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
 	'rex87.pythonanywhere.com',
@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'pythonanywhere_rex87.apps.PythonanywhereRex87Config',
     'covid19_plots.apps.Covid19PlotsConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',

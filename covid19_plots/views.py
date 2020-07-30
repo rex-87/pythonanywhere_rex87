@@ -97,7 +97,11 @@ def index(request):
         # import IPython; IPython.embed(colors='Neutral')
         selected_country_l = request.POST.getlist('selected_country_l')
     else:
-        selected_country_l = ['France', 'United Kingdom']
+        if selected_country_l is None:
+            selected_country_l = ['France', 'United Kingdom']
+
+    if selected_country_l is None:
+        raise Exception("selected_country_l is None")   
 
     # import IPython; IPython.embed(colors='Neutral')
     # selected_country_l = ['US', 'Brazil', 'India', 'Russia']
@@ -201,8 +205,12 @@ def index(request):
     # ---- show !
     # fig.show()
 
+    country_l = sorted([c for c in cumul_confir_df.columns if ('(7day)' not in c) and c != 'date'])
+    
     context = {
         'fig_html': fig.to_html(include_plotlyjs = False, full_html = False, default_height = '100%'),
+        'country_l': country_l,
+        'selected_country_l': selected_country_l,
     }
 
     return render(request, 'covid19_plots/index.html', context)
@@ -213,10 +221,6 @@ def edit(request):
 
     global selected_country_l
 
-    country_l = sorted([c for c in cumul_confir_df.columns if ('(7day)' not in c) and c != 'date'])
-
     context = {
-        'country_l': country_l,
-        'selected_country_l': selected_country_l,
     }
     return render(request, 'covid19_plots/edit.html', context)  

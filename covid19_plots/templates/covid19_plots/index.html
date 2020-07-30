@@ -6,10 +6,50 @@
     {{fig_html}}
     {% endautoescape %}
 
-    <br>
-    <div class="container">
-	<a href="/covid19_plots/edit" type="button" class="btn btn-primary btn-block">Edit plots</a>
-    </div>
-    <br>
+
+	<form action="{% url 'covid19_plots:index' %}" method="POST">
+
+		{% csrf_token %}
+
+		<br>
+		<div class="container-fluid">
+			
+			<div class="row">
+
+				<div class="col">
+				
+					<div class="container-fluid">
+						
+						<div class="row">
+							<div class="col">
+								<label for="selected_country_l">Select countries:</label>	
+							</div>
+						</div>
+
+						<div class="row">
+
+							<select class="col" name="selected_country_l" size="6" multiple>
+								{% for country in country_l %}
+							  		<option value="{{country}}" {% if country in selected_country_l %}selected{% endif %}>{{country}}</option>
+								{% endfor %}
+							</select>
+
+						</div>
+
+					</div>
+				</div>	
+			</div>
+			<br>
+			<div class="row">
+				<div class="col">
+					<input class="btn btn-primary btn-block" type="submit" value="Update plots">
+				</div>
+			</div>			
+
+
+		</div>
+
+	</form>
+
 
 {% endblock %}
