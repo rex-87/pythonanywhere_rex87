@@ -2,54 +2,57 @@
 
 {% block content %}
 
-    {% autoescape off %}
-    {{fig_html}}
-    {% endautoescape %}
+	<div class="container-fluid">
+	    
+	    {% autoescape off %}
+	    {{fig_html}}
+	    {% endautoescape %}
 
 
-	<form action="{% url 'covid19_plots:index' %}" method="POST">
+		<form action="{% url 'covid19_plots:index' %}" method="POST">
 
-		{% csrf_token %}
+			{% csrf_token %}
 
-		<br>
-		<div class="container-fluid">
-			
-			<div class="row">
-
-				<div class="col">
+			<div class="container-fluid">
 				
-					<div class="container-fluid">
-						
-						<div class="row">
-							<div class="col">
-								<label for="selected_country_l">Select countries:</label>	
+				<div class="row">
+
+					<div class="col">
+					
+						<div class="container-fluid">
+							
+							<div class="row">
+								<div class="col">
+									<label class="small" for="selected_country_l">Select countries:</label>	
+								</div>
 							</div>
+
+							<div class="row">
+
+								<select class="col selectpicker small" name="selected_country_l" data-actions-box="true" data-live-search="true" data-dropup-auto="false" data-deselect-all-text="Clear all" multiple>
+									{% for country in country_l %}
+								  		<option value="{{country}}" {% if country in selected_country_l %}selected{% endif %}>{{country}}</option>
+									{% endfor %}
+								</select>
+
+							</div>
+
 						</div>
-
-						<div class="row">
-
-							<select class="col" name="selected_country_l" size="6" multiple>
-								{% for country in country_l %}
-							  		<option value="{{country}}" {% if country in selected_country_l %}selected{% endif %}>{{country}}</option>
-								{% endfor %}
-							</select>
-
-						</div>
-
-					</div>
-				</div>	
-			</div>
-			<br>
-			<div class="row">
-				<div class="col">
-					<input class="btn btn-primary btn-block" type="submit" value="Update plots">
+					</div>	
 				</div>
-			</div>			
+				<br>
+				<div class="row">
+					<div class="col">
+						<input class="btn btn-primary btn-block" type="submit" value="Update plots">
+					</div>
+				</div>			
 
 
-		</div>
+			</div>
+			
 
-	</form>
+		</form>
 
+	</div>	
 
 {% endblock %}
