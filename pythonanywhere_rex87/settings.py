@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'pythonanywhere_rex87.apps.PythonanywhereRex87Config',
     'covid19_plots.apps.Covid19PlotsConfig',
+    'corona.apps.CoronaConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
