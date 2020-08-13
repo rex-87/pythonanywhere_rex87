@@ -91,10 +91,15 @@ def data(request):
     if (data_update_time is None) or (time.time() - data_update_time > 86400):
         download_data()
 
+    # df, dftit = cumul_confir_df, 'confirmed cases (cumulative)'
+    df, dftit = daily_confir_df, 'confirmed cases (daily)'
+    # df, dftit = cumul_deaths_df, 'deaths (cumulative)'
+    # df, dftit = daily_deaths_df, 'deaths (daily)'
+
     chart = {
 
         'title': {
-            'text': 'COVID-19 confirmed cases (cumulative)'
+            'text': 'COVID-19 ' + dftit
         },
 
         'subtitle': {
@@ -129,14 +134,6 @@ def data(request):
             }
         },
 
-        'series': [{
-            'name': 'United Kingdom',
-            'data': list(cumul_confir_df['United Kingdom']),
-        }, {
-            'name': 'France',
-            'data': list(cumul_confir_df['France']),
-        }],
-
         'tooltip': {
             'shared': True,
             'crosshairs': True,
@@ -158,5 +155,26 @@ def data(request):
         }
 
     }
+
+    chart['series'] = []
+    country_l = ['United Kingdom', 'France', 'Spain']
+    for country in country_l:
+        chart['series'].append(
+            {
+                'type': 'column',
+                'name': country,
+                'data': list(df[country].fillna('null')),
+                'visible' : False,
+            }
+        )
+        chart['series'].append(
+            {
+                'type': 'line',
+                'name': country +' (7d)',
+                'data': list(df[country +' (7day)'].fillna('null')),
+            },
+        )
+
+    # import IPython; IPython.embed(colors='Neutral')
 
     return JsonResponse(chart)
